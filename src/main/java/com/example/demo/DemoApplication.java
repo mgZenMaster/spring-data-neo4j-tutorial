@@ -8,9 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication implements CommandLineRunner {
 
 	private final SongRepository songRepository;
+	private final ReleaseRepository releaseRepository;
 
-	public DemoApplication(SongRepository songRepository) {
+	public DemoApplication(SongRepository songRepository, ReleaseRepository releaseRepository) {
 		this.songRepository = songRepository;
+		this.releaseRepository = releaseRepository;
 	}
 
 	public static void main(String[] args) {
@@ -19,10 +21,16 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		for(Song song : songRepository.findAll()) {
-			System.out.println(song.getName());
-			for(AppearsOn appearsOn : song.getReleases()) {
-				System.out.println("   " + appearsOn.getSongNr() + " " + appearsOn.getRelease().getName());
+//		for(Song song : songRepository.findAll()) {
+//			System.out.println(song.getName());
+//			for(AppearsOn appearsOn : song.getReleases()) {
+//				System.out.println("   " + appearsOn.getSongNr() + " " + appearsOn.getRelease().getName());
+//			}
+//		}
+		for(Release release : releaseRepository.findAll()) {
+			System.out.println(release.getName());
+			for(AppearsOnReverse appearsOnReverse : release.getAppearsOnReverses()) {
+				System.out.println("   " + appearsOnReverse.getSongNr() + " " + appearsOnReverse.getSong().getName());
 			}
 		}
 	}
