@@ -31,6 +31,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.neo4j.driver</groupId>
+			<artifactId>neo4j-java-driver-spring-boot-starter</artifactId>
+			<version>4.2.7.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
